@@ -1,0 +1,123 @@
+.login-container {
+  min-width: 1000px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  height: 680px;
+  background: linear-gradient(147.13deg, var(--yellow) 0%, var(--red) 100%);
+  background: url(../Images/background.jpg),
+    linear-gradient(to right, red, blue);
+  background-size: cover;
+  border-radius: 30px;
+  display: flex;
+  width: 65%;
+  box-shadow: 0px 0px 20px var(--darkgrey);
+  text-align: center;
+
+  & .left {
+    align-items: center;
+    flex: 3;
+    padding: 30px 0;
+    vertical-align: middle;
+    margin-top: 80px;
+    & h2 {
+      font-size: 5rem;
+      font-family: "Exo", sans-serif;
+    }
+    & h3 {
+      font-size: 1.8rem;
+      font-weight: lighter;
+    }
+    & ul {
+      width: 70%;
+      margin: 55px auto;
+      text-align: left;
+      font-weight: bold;
+      font-size: 1.5rem;
+      letter-spacing: 2px;
+      list-style-type: square;
+      & li {
+        margin: 15px 0px 10px 40px;
+        & span {
+          font-size: 2.5rem;
+        }
+      }
+    }
+  }
+
+  & .right {
+    padding: 20px;
+    margin: 30px;
+    flex: 2;
+    border-radius: 30px;
+    background: rgba($color: #313131, $alpha: 0.3);
+    box-shadow: 0px 0px 2px var(--darkgrey);
+
+    & .input-container {
+      width: 380px;
+      margin: 130px auto;
+      & h2 {
+        font-family: "Exo", sans-serif;
+
+        color: #fff;
+        text-shadow: 2px 2px 8px var(--darkgrey);
+        margin-bottom: 30px;
+        font-weight: 500;
+        letter-spacing: 3px;
+      }
+      & input {
+        padding: 0.8rem;
+        width: 100%;
+        height: 100%;
+        border: 2px solid #ff544f;
+        background-color: var(--white);
+        border-radius: 10px;
+        transition: all 0.3s;
+        margin: 15px 0;
+        font-size: 1.2rem;
+
+        &::placeholder {
+          opacity: 1;
+          transition: all 0.3s;
+          color: var(--darkgrey);
+        }
+        &:focus::placeholder {
+          opacity: 0;
+        }
+      }
+      & button {
+        margin: 40px auto 0;
+        font-weight: bold;
+        color: #fff;
+        cursor: pointer;
+        background-color: var(--red);
+        border: #fff solid 2px;
+        letter-spacing: 1.5px;
+        border-radius: 10px;
+        width: 170px;
+        font-size: 1.4rem;
+        padding: 12px;
+        display: block;
+        &:hover {
+          background-color: var(--darkred);
+          transition: all 0.3s;
+        }
+      }
+      & p {
+        color: var(--white);
+        font-family: "Exo", sans-serif;
+        cursor: pointer;
+        & span {
+          font-weight: 800;
+          &:hover {
+            color: var(--yellow);
+            transition: all 0.4s;
+          }
+        }
+      }
+    }
+  }
+}
