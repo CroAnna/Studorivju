@@ -30,6 +30,30 @@ app.post("/registration", (req, res) => {
   );
 });
 
+app.post("/login", (req, res) => {
+  const username = req.body.username;
+  const password = req.body.password;
+
+  DB.query(
+    "SELECT * FROM users WHERE BINARY username = ? AND BINARY password = ?",
+    // BINARY za case-sensitive
+    [username, password],
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        res.send({ err: err });
+      }
+      if (result.length > 0) {
+        res.send(result);
+        console.log("dobri");
+      } else {
+        res.send({ message: "Krivi podaci za prijavu" });
+        console.log("krivi");
+      }
+    }
+  );
+});
+
 app.listen(3001, () => {
   console.log("server 3001");
 });

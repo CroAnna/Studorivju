@@ -8,7 +8,11 @@ const LoginPage = () => {
   const [usernameReg, setUsernameReg] = useState("");
   const [passwordReg, setPasswordReg] = useState("");
   const [facultyReg, setFacultyReg] = useState("");
-  const [validationStatus, setValidationStatus] = useState("");
+
+  const [usernameLog, setUsernameLog] = useState("");
+  const [passwordLog, setPasswordLog] = useState("");
+
+  const [errorMessage, setErrorMessage] = useState("");
 
   const noAccountHandler = () => {
     console.log("promjena");
@@ -16,9 +20,6 @@ const LoginPage = () => {
   };
 
   const registration = () => {
-    console.log("registracija");
-    console.log(usernameReg, passwordReg, facultyReg);
-
     if (usernameReg !== "" && passwordReg !== "" && facultyReg !== "") {
       Axios.post("http://localhost:3001/registration", {
         username: usernameReg,
@@ -29,11 +30,27 @@ const LoginPage = () => {
       });
     } else {
       console.log("nekaj je prazno");
-      setValidationStatus("Nisu svi podaci pravilno ispunjeni!");
+      setErrorMessage("Nisu svi podaci pravilno ispunjeni!");
     }
   };
 
+  const login = () => {
+    Axios.post("http://localhost:3001/login", {
+      username: usernameLog,
+      password: passwordLog,
+    }).then((response) => {
+      console.log(response);
+      if (response.data.message) {
+        console.log(response.data);
+        setErrorMessage(response.data.message);
+      } else {
+        alert("ok je");
+      }
+    });
+  };
+
   // dodaj da baca error ak vec postoji s tim usernameom - slicno ko ono kriva lozinka
+  // dodaj ono potvrdi lozinku i ono oko da se vidi pri loginu ak zelimo
 
   return (
     <div className="login-container">
@@ -55,12 +72,25 @@ const LoginPage = () => {
       <div className="right">
         <div className={loginView ? "input-container login" : "hidden"}>
           <h2>Prijava</h2>
-          <input type="text" placeholder="Username" />
-          <input type="password" placeholder="Password" />
+          <input
+            type="text"
+            placeholder="Username"
+            onChange={(e) => {
+              setUsernameLog(e.target.value);
+            }}
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            onChange={(e) => {
+              setPasswordLog(e.target.value);
+            }}
+          />
           <p>
             Nemaš račun? <span onClick={noAccountHandler}>Registriraj se.</span>
           </p>
-          <button>Prijavi se</button>
+          <button onClick={login}>Prijavi se</button>
+          <h3>{errorMessage}</h3>
         </div>
         <div className={loginView ? "hidden" : "input-container registration"}>
           <h2>Registracija</h2>
@@ -96,7 +126,7 @@ const LoginPage = () => {
             Imaš račun? <span onClick={noAccountHandler}>Prijavi se.</span>
           </p>
           <button onClick={registration}>Registriraj se</button>{" "}
-          <h3>{validationStatus}</h3>
+          <h3>{errorMessage}</h3>
         </div>
       </div>
     </div>
