@@ -49,6 +49,7 @@
   }
 
   & .right {
+    transition: all 2s;
     padding: 20px;
     margin: 30px;
     flex: 2;
@@ -58,7 +59,12 @@
 
     & .input-container {
       width: 380px;
-      margin: 130px auto;
+      &.login {
+        margin: 130px auto;
+      }
+      &.registration {
+        margin: 40px auto;
+      }
       & h2 {
         font-family: "Exo", sans-serif;
 
@@ -68,7 +74,19 @@
         font-weight: 500;
         letter-spacing: 3px;
       }
-      & input {
+      & h3 {
+        position: relative;
+        margin: 20px;
+        padding: 10px;
+        border-radius: 10px;
+        color: #fff;
+        text-shadow: 2px 2px 8px var(--darkgrey);
+        font-weight: 800;
+        letter-spacing: 0.4px;
+      }
+
+      & input,
+      select {
         padding: 0.8rem;
         width: 100%;
         height: 100%;
@@ -97,7 +115,7 @@
         border: #fff solid 2px;
         letter-spacing: 1.5px;
         border-radius: 10px;
-        width: 170px;
+        width: fit-content;
         font-size: 1.4rem;
         padding: 12px;
         display: block;
