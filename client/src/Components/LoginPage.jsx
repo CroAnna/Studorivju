@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import "./LoginPage.scss";
 import Axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
   const [loginView, setLoginView] = useState(true);
@@ -13,6 +14,8 @@ const LoginPage = () => {
   const [passwordLog, setPasswordLog] = useState("");
 
   const [errorMessage, setErrorMessage] = useState("");
+
+  const navigate = useNavigate();
 
   const noAccountHandler = () => {
     console.log("promjena");
@@ -44,7 +47,7 @@ const LoginPage = () => {
         console.log(response.data);
         setErrorMessage(response.data.message);
       } else {
-        alert("ok je");
+        navigate(`/Home/${response.data[0].user_id}`);
       }
     });
   };
