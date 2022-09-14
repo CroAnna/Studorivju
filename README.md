@@ -1,4 +1,4 @@
-# 👩‍🎓 Studorivju 
+# 👩‍🎓 Studorivju - in progress
 
 ➡ Application for students that helps them in everyday activities. 
 
